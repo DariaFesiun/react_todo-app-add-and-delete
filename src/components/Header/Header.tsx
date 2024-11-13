@@ -3,6 +3,7 @@ import { Todo } from '../../types/Todo';
 import { Error } from '../../types/Error';
 import classNames from 'classnames';
 import { USER_ID, addTodo } from '../../api/todos';
+
 type Props = {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
@@ -30,6 +31,7 @@ export const Header: React.FC<Props> = ({
 }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (!query.trim()) {
       setErrorMessage(Error.titleShouldNotBeEmpty);
       setTimeout(() => {
@@ -68,11 +70,11 @@ export const Header: React.FC<Props> = ({
   };
 
   return (
-    <header className="todoappheader">
+    <header className="todoapp__header">
       {todos.length > 0 && (
         <button
           type="button"
-          className={classNames('todoapptoggle-all', {
+          className={classNames('todoapp__toggle-all', {
             active: todos.length === completedTodos.length,
           })}
           data-cy="ToggleAllButton"

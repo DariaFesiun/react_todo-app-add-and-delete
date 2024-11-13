@@ -14,9 +14,10 @@ import { ErrorNotification } from './components/ErrorNotify/ErrorNotification';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [isInputLoading, setIsInputLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(Error.none);
   const [filter, setFilter] = useState(Filter.All);
+  const [errorMessage, setErrorMessage] = useState(Error.none);
+
+  const [isInputLoading, setIsInputLoading] = useState(false);
   const [tempTodo, setTempTodo] = useState<Todo | null>(null);
   const [query, setQuery] = useState('');
   const [deletingTodoIds, setDeletingTodoIds] = useState<number[]>([]);
@@ -25,6 +26,7 @@ export const App: React.FC = () => {
 
   const completedTodos = todos.filter(todo => todo.completed);
   const activeTodos = [...todos].filter(todo => !todo.completed);
+
   const filteredTodos = () => {
     switch (filter) {
       case Filter.Completed:
@@ -49,6 +51,7 @@ export const App: React.FC = () => {
         }, 3000);
       });
   }, []);
+
   useEffect(() => {
     if (textField.current) {
       textField.current.focus();
